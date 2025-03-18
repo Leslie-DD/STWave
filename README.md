@@ -73,6 +73,21 @@ If you find our work is helpful, please cite as:
 }
 ```
 
+## Further Reading
+1. [**Efficient Large-Scale Traffic Forecasting with Transformers: A Spatial Data Management Perspective**](https://arxiv.org/abs/2412.09972), in *SIGKDD* 2025.
+[\[GitHub Repo\]](https://github.com/LMissher/PatchSTG)
+
+**Authors**: Yuchen Fang, Yuxuan Liang, Bo Hui, Zezhi Shao, Liwei Deng, Xu Liu, Xinke Jiang, Kai Zheng.
+
+```bibtex
+@article{fang2024efficient,
+  title={Efficient Large-Scale Traffic Forecasting with Transformers: A Spatial Data Management Perspective},
+  author={Fang, Yuchen and Liang, Yuxuan and Hui, Bo and Shao, Zezhi and Deng, Liwei and Liu, Xu and Jiang, Xinke and Zheng, Kai},
+  journal={arXiv preprint arXiv:2412.09972},
+  year={2024}
+}
+```
+
 ## 👍 Contributing
 
 
