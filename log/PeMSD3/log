@@ -1,0 +1,38 @@
+------------ Options -------------
+config: config/PeMSD3.conf
+cuda: 0
+seed: 1
+batch_size: 32
+max_epoch: 10
+learning_rate: 0.001
+input_len: 12
+output_len: 12
+train_ratio: 0.6
+val_ratio: 0.2
+test_ratio: 0.2
+dims: 16
+heads: 8
+layers: 2
+wave: sym2
+level: 1
+samples: 1.0
+traffic_file: ./data/PeMSD3/PEMS03.npz
+adj_file: ./data/PeMSD3/adj.npy
+tem_adj_file: ./data/PeMSD3/temadj.npy
+model_file: ./cpt/PeMSD3/saved_model
+log_file: ./log/PeMSD3/log
+-------------- End ----------------
+
+------------ Loading Data -------------
+Shape of data: (26208, 358, 1)
+Shape of Train Data: (15702, 12, 358, 1)
+Shape of Validation Data: (5218, 12, 358, 1)
+Shape of Test Data: (5219, 12, 358, 1)
+Mean: 181.33111030702892 & Std: 144.4021474859257
+temporal_graph ./data/PeMSD3/temadj.npy exists, loading...
+Shape of graphwave eigenvalue and eigenvector: (128,), (358, 128)
+Shape of localadj: (358, 8)
+------------ End -------------
+
+torch.cuda.is_available() ? False, self.device, cpu
+======================TRAIN MODE======================

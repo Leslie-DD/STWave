@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 import scipy.sparse as sp
 from fastdtw import fastdtw
-from .utils import log_string
+from lib.utils import log_string
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import dijkstra
 
@@ -47,13 +47,15 @@ def construct_tem_adj(data, num_node):
     tem_matrix = np.logical_or(tem_matrix, tem_matrix.T).astype(int)
     return tem_matrix
 
-def loadGraph(spatial_graph, temporal_graph, dims, data, log):
+def load_graph(spatial_graph, temporal_graph, dims, data, log):
     # calculate spatial and temporal graph wavelets
     adj = np.load(spatial_graph)
     adj = adj + np.eye(adj.shape[0])
-    if os.path.exists(temporal_graph):
+    if temporal_graph is not None and os.path.exists(temporal_graph):
+        log_string(log, f'temporal_graph {temporal_graph} exists, loading...')
         tem_adj = np.load(temporal_graph)
     else:
+        log_string(log, f'temporal_graph {temporal_graph} does not exist, constructing...')
         tem_adj = construct_tem_adj(data, adj.shape[0])
         np.save(temporal_graph, tem_adj)
     spawave = get_eigv(adj, dims)

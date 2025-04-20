@@ -1,0 +1,40 @@
+------------ Options -------------
+config: config/PeMSD4.conf
+cuda: 0
+seed: 1
+batch_size: 64
+max_epoch: 10
+learning_rate: 0.001
+input_len: 12
+output_len: 12
+train_ratio: 0.6
+val_ratio: 0.2
+test_ratio: 0.2
+dims: 16
+heads: 8
+layers: 2
+wave: db1
+level: 1
+samples: 1.0
+traffic_file: ./data/PeMSD4/PEMS04.npz
+adj_file: ./data/PeMSD4/adj.npy
+tem_adj_file: ./data/PeMSD4/temadj.npy
+model_file: ./cpt/PeMSD4/saved_model
+log_file: ./log/PeMSD4/log
+-------------- End ----------------
+
+------------ Loading Data -------------
+Shape of original:    (16992, 307, 3)
+Shape of data:        (16992, 307, 1)
+  num steps of data:  16992
+
+Shape of TE:          (16992, 2)
+Shape of TE_tile:     (16992, 307, 2)
+
+Shape of Train Data:      (10172, 12, 307, 1)
+Shape of Validation Data: (3376, 12, 307, 1)
+Shape of Test Data:       (3375, 12, 307, 1)
+
+Mean: 207.14156436010714 & Std: 156.46075221136476
+
+temporal_graph ./data/PeMSD4/temadj.npy does not exist, constructing...

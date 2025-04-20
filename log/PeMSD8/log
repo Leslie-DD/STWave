@@ -1,0 +1,39 @@
+------------ Options -------------
+config: config/PeMSD8.conf
+cuda: 0
+seed: 1
+batch_size: 64
+max_epoch: 50
+learning_rate: 0.001
+input_len: 12
+output_len: 12
+train_ratio: 0.6
+val_ratio: 0.2
+test_ratio: 0.2
+dims: 16
+heads: 8
+layers: 2
+wave: coif1
+level: 1
+samples: 1.0
+traffic_file: ./data/PeMSD8/PEMS08.npz
+adj_file: ./data/PeMSD8/adj.npy
+tem_adj_file: ./data/PeMSD8/temadj.npy
+model_file: ./cpt/PeMSD8/saved_model
+log_file: ./log/PeMSD8/log
+-------------- End ----------------
+
+------------ Loading Data -------------
+Shape of original:    (17856, 170, 3)
+Shape of data:        (17856, 170, 1)
+  num steps of data:  17856
+
+Shape of TE:          (17856, 2)
+Shape of TE_tile:     (17856, 170, 2)
+
+Shape of Train Data:      (10691, 12, 170, 1)
+Shape of Validation Data: (3548, 12, 170, 1)
+Shape of Test Data:       (3548, 12, 170, 1)
+
+Mean: 229.9842003352646 & Std: 145.60115060481453
+
