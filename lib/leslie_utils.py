@@ -28,7 +28,7 @@ def inspect_npy_file(npy_file_path = "../data/PeMSD4/adj.npy"):
     # np.set_printoptions(threshold=np.inf)
     # print(data)      # 输出所有数据
 
-def inspect_pkl_file(pkl_file_path = "../data/PeMSD3/adj_mat.pkl"):
+def inspect_pkl_file(pkl_file_path = "../data/PeMSD4/adj_mat.pkl"):
     # 加载 PKL 文件
     with open(pkl_file_path, 'rb') as f:
         data = pickle.load(f)
@@ -53,4 +53,34 @@ def inspect_pkl_file(pkl_file_path = "../data/PeMSD3/adj_mat.pkl"):
     #     print("DataFrame 列名:", data.columns)
 
 
-inspect_npy_file()
+inspect_npy_file(npy_file_path = "../data/PeMSD4/adj.npy")
+inspect_npy_file(npy_file_path = "../data/PeMSD4/adj_mat.npy")
+
+
+
+import pandas as pd
+
+def extra_ct_sensor_ids_from_csv(file_path, output_file):
+    """
+    从 CSV 文件中提取 sensorid
+    :return:
+    """
+
+    data = pd.read_csv(file_path)
+
+    # 提取 from 和 to 列的所有 sensorid
+    sensor_ids = pd.concat([data['from'], data['to']])
+
+    # 去重
+    unique_sensor_ids = sensor_ids.unique()
+
+    # 打印结果
+    # print(f"Unique sensor IDs: {unique_sensor_ids}")
+
+    # 保存到txt文件，每个sensorid用逗号分隔
+    with open(output_file, 'w') as f:
+        f.write(','.join(map(str, unique_sensor_ids)))
+
+    print(f"Unique sensor IDs saved to {output_file}.")
+
+# extra_ct_sensor_ids_from_csv(file_path = '../data/PeMSD8/PEMS08.csv', output_file = "../data/PeMSD8/graph_sensor_ids.txt")

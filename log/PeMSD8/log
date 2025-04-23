@@ -37,3 +37,11 @@ Shape of Test Data:       (3548, 12, 170, 1)
 
 Mean: 229.9842003352646 & Std: 145.60115060481453
 
+temporal_graph ./data/PeMSD8/temadj.npy exists, loading...
+Shape of graphwave eigenvalue and eigenvector: (128,), (170, 128)
+Shape of localadj: (170, 7)
+------------ End -------------
+
+torch.cuda.is_available() ? False, self.device, cpu
+======================TRAIN MODE======================
+epoch 1, lr 0.001000, loss 70.4834, time 1058.1 sec

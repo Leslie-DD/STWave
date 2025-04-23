@@ -12,10 +12,7 @@ from model.models import STWave
 from lib.graph_utils import load_graph
 from lib.utils import log_string, load_data, _compute_loss, metric, disentangle
 import os
-# os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
-# torch.cuda.empty_cache()
-# print(torch.cuda.memory_summary())
 
 print(f"torch.cuda.is_available() ? {torch.cuda.is_available()}")
 
@@ -102,6 +99,7 @@ class Solver(object):
         log_string(log, "======================TRAIN MODE======================")
         min_loss = 10000000.0
         num_train = self.trainX.shape[0]
+        total_training_time = 0  # 用于记录总的训练时间
 
         for epoch in tqdm(range(1,self.max_epoch+1)):
             self.model.train()
@@ -138,8 +136,10 @@ class Solver(object):
                     n += Y.shape[0]
                     batch_count += 1
                     pbar.update(1)
+            epoch_cost_time = time.time() - start
+            total_training_time += epoch_cost_time
             log_string(log, 'epoch %d, lr %.6f, loss %.4f, time %.1f sec'
-                % (epoch, self.optimizer.param_groups[0]['lr'], train_l_sum / batch_count, time.time() - start))
+                % (epoch, self.optimizer.param_groups[0]['lr'], train_l_sum / batch_count, epoch_cost_time))
             mae, rmse, mape = self.vali()
             self.lr_scheduler.step(mae[-1])
             if mae[-1] < min_loss:
@@ -149,7 +149,8 @@ class Solver(object):
                 if not os.path.exists(model_dir):
                     os.makedirs(model_dir)
                 torch.save(self.model.state_dict(), self.model_file)
-        
+
+        log_string(log, f'Total training time is: {total_training_time} sec')
         log_string(log, f'Best epoch is: {self.best_epoch}')
 
     def test(self):

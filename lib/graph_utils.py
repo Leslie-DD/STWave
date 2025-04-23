@@ -29,16 +29,30 @@ def get_eigv(adj,k):
     return eig
 
 def construct_tem_adj(data, num_node):
+    """
+    construct_tem_adj 方法的主要功能是基于动态时间规整（DTW, Dynamic Time Warping）距离构造一个时间相关的邻接矩阵（temporal adjacency matrix）。
+    """
+    # 计算时间序列的平均值：
+    # 将输入数据 data 按照每天的时间步（假设一天有 24*12 个时间步）分割，并计算每一天的平均值。
+    # 结果是一个形状为 (num_node, time_steps_per_day) 的矩阵 data_mean，表示每个节点的时间序列平均值。
     data_mean = np.mean([data[24*12*i: 24*12*(i+1)] for i in range(data.shape[0]//(24*12))], axis=0)
     data_mean = data_mean.squeeze().T
+
+    # 计算 DTW 距离：
+    # 初始化一个矩阵 dtw_distance，用于存储节点之间的 DTW 距离。
+    # 遍历每对节点 (i, j)，计算它们的时间序列平均值之间的 DTW 距离，并存储在 dtw_distance 中。
     dtw_distance = np.zeros((num_node, num_node))
     for i in tqdm(range(num_node)):
         for j in range(i, num_node):
             dtw_distance[i][j] = fastdtw(data_mean[i], data_mean[j], radius=6)[0]
+
+    # 对称化距离矩阵：
+    # 确保 dtw_distance 矩阵是对称的，即 dtw_distance[i][j] == dtw_distance[j][i]。
     for i in range(num_node):
         for j in range(i):
             dtw_distance[i][j] = dtw_distance[j][i]
 
+    # 选择 NlogN 条边：
     nth = np.sort(dtw_distance.reshape(-1))[
         int(np.log2(dtw_distance.shape[0])*dtw_distance.shape[0]):
         int(np.log2(dtw_distance.shape[0])*dtw_distance.shape[0])+1] # NlogN edges

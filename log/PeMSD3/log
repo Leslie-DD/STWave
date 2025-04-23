@@ -1,9 +1,9 @@
 ------------ Options -------------
-config: config/PeMSD3.conf
+config: config/PeMSD3-50-epoches.conf
 cuda: 0
 seed: 1
 batch_size: 32
-max_epoch: 10
+max_epoch: 50
 learning_rate: 0.001
 input_len: 12
 output_len: 12
@@ -17,22 +17,134 @@ wave: sym2
 level: 1
 samples: 1.0
 traffic_file: ./data/PeMSD3/PEMS03.npz
-adj_file: ./data/PeMSD3/adj.npy
+adj_file: ./data/PeMSD3/adj_mat.npy
 tem_adj_file: ./data/PeMSD3/temadj.npy
 model_file: ./cpt/PeMSD3/saved_model
 log_file: ./log/PeMSD3/log
 -------------- End ----------------
 
 ------------ Loading Data -------------
-Shape of data: (26208, 358, 1)
-Shape of Train Data: (15702, 12, 358, 1)
+Shape of original:    (26208, 358, 1)
+Shape of data:        (26208, 358, 1)
+  num steps of data:  26208
+
+Shape of TE:          (26208, 2)
+Shape of TE_tile:     (26208, 358, 2)
+
+Shape of Train Data:      (15702, 12, 358, 1)
 Shape of Validation Data: (5218, 12, 358, 1)
-Shape of Test Data: (5219, 12, 358, 1)
+Shape of Test Data:       (5219, 12, 358, 1)
+
 Mean: 181.33111030702892 & Std: 144.4021474859257
+
 temporal_graph ./data/PeMSD3/temadj.npy exists, loading...
 Shape of graphwave eigenvalue and eigenvector: (128,), (358, 128)
 Shape of localadj: (358, 8)
 ------------ End -------------
 
-torch.cuda.is_available() ? False, self.device, cpu
+torch.cuda.is_available() ? True, self.device, cuda:0
 ======================TRAIN MODE======================
+epoch 1, lr 0.001000, loss 47.9786, time 157.0 sec
+average, mae: 19.1213, rmse: 29.0888, mape: 0.2024
+epoch 2, lr 0.001000, loss 34.6758, time 156.3 sec
+average, mae: 17.6964, rmse: 27.6460, mape: 0.1595
+epoch 3, lr 0.001000, loss 33.4498, time 156.4 sec
+average, mae: 16.9007, rmse: 26.4190, mape: 0.1928
+epoch 4, lr 0.001000, loss 32.3292, time 160.3 sec
+average, mae: 17.0449, rmse: 26.5795, mape: 0.1654
+epoch 5, lr 0.001000, loss 31.7138, time 160.5 sec
+average, mae: 16.7541, rmse: 26.3669, mape: 0.1648
+epoch 6, lr 0.001000, loss 31.5743, time 160.6 sec
+average, mae: 16.8880, rmse: 26.1247, mape: 0.2268
+epoch 7, lr 0.001000, loss 31.2001, time 160.3 sec
+average, mae: 16.3802, rmse: 25.8305, mape: 0.1673
+epoch 8, lr 0.001000, loss 31.0619, time 160.2 sec
+average, mae: 16.4435, rmse: 25.9658, mape: 0.1834
+epoch 9, lr 0.001000, loss 30.8182, time 160.2 sec
+average, mae: 16.6194, rmse: 25.8635, mape: 0.1718
+epoch 10, lr 0.001000, loss 30.6220, time 163.1 sec
+average, mae: 16.2301, rmse: 25.6488, mape: 0.1580
+epoch 11, lr 0.001000, loss 30.6244, time 172.0 sec
+average, mae: 16.2860, rmse: 25.7365, mape: 0.1537
+epoch 12, lr 0.001000, loss 30.4787, time 171.8 sec
+average, mae: 16.2163, rmse: 25.7566, mape: 0.1539
+epoch 13, lr 0.001000, loss 30.3342, time 170.2 sec
+average, mae: 16.1274, rmse: 25.6276, mape: 0.1555
+epoch 14, lr 0.001000, loss 30.2163, time 160.1 sec
+average, mae: 16.1506, rmse: 25.6874, mape: 0.1591
+epoch 15, lr 0.001000, loss 30.0969, time 160.0 sec
+average, mae: 16.2981, rmse: 25.6818, mape: 0.1718
+epoch 16, lr 0.001000, loss 30.0443, time 160.2 sec
+average, mae: 16.1172, rmse: 25.5372, mape: 0.1681
+epoch 17, lr 0.001000, loss 29.9675, time 162.4 sec
+average, mae: 16.2388, rmse: 25.6832, mape: 0.1712
+epoch 18, lr 0.001000, loss 29.9655, time 163.9 sec
+average, mae: 16.1882, rmse: 25.6374, mape: 0.1482
+epoch 19, lr 0.001000, loss 29.8894, time 163.1 sec
+average, mae: 16.1744, rmse: 25.8044, mape: 0.1499
+epoch 20, lr 0.001000, loss 29.7985, time 161.9 sec
+average, mae: 16.4136, rmse: 25.9977, mape: 0.1488
+epoch 21, lr 0.001000, loss 29.7537, time 160.3 sec
+average, mae: 15.9531, rmse: 25.3743, mape: 0.1490
+epoch 22, lr 0.001000, loss 29.5216, time 160.3 sec
+average, mae: 15.9355, rmse: 25.3568, mape: 0.1471
+epoch 23, lr 0.001000, loss 29.4930, time 160.6 sec
+average, mae: 15.8384, rmse: 25.2245, mape: 0.1472
+epoch 24, lr 0.001000, loss 29.3167, time 161.2 sec
+average, mae: 16.0800, rmse: 25.3873, mape: 0.1586
+epoch 25, lr 0.001000, loss 29.1478, time 161.2 sec
+average, mae: 15.7796, rmse: 24.9968, mape: 0.1431
+epoch 26, lr 0.001000, loss 28.9844, time 161.2 sec
+average, mae: 15.7154, rmse: 24.9690, mape: 0.1465
+epoch 27, lr 0.001000, loss 28.7997, time 170.1 sec
+average, mae: 15.3721, rmse: 24.4138, mape: 0.1446
+epoch 28, lr 0.001000, loss 28.4967, time 170.0 sec
+average, mae: 15.1407, rmse: 24.0658, mape: 0.1498
+epoch 29, lr 0.001000, loss 28.2173, time 170.0 sec
+average, mae: 15.0737, rmse: 23.8094, mape: 0.1574
+epoch 30, lr 0.001000, loss 27.9347, time 163.9 sec
+average, mae: 14.8370, rmse: 23.4681, mape: 0.1498
+epoch 31, lr 0.001000, loss 27.7479, time 162.8 sec
+average, mae: 14.5856, rmse: 23.1454, mape: 0.1362
+epoch 32, lr 0.001000, loss 27.5866, time 163.1 sec
+average, mae: 14.4659, rmse: 23.0341, mape: 0.1404
+epoch 33, lr 0.001000, loss 27.4818, time 166.1 sec
+average, mae: 14.4447, rmse: 22.9482, mape: 0.1346
+epoch 34, lr 0.001000, loss 27.3539, time 167.5 sec
+average, mae: 14.4684, rmse: 22.9654, mape: 0.1361
+epoch 35, lr 0.001000, loss 27.3433, time 167.4 sec
+average, mae: 14.4004, rmse: 22.9046, mape: 0.1492
+epoch 36, lr 0.001000, loss 27.1858, time 165.4 sec
+average, mae: 14.3368, rmse: 22.8187, mape: 0.1358
+epoch 37, lr 0.001000, loss 27.1250, time 162.2 sec
+average, mae: 14.3257, rmse: 22.8261, mape: 0.1469
+epoch 38, lr 0.001000, loss 27.1240, time 162.3 sec
+average, mae: 14.2536, rmse: 22.7437, mape: 0.1364
+epoch 39, lr 0.001000, loss 27.0109, time 162.1 sec
+average, mae: 14.1245, rmse: 22.5500, mape: 0.1364
+epoch 40, lr 0.001000, loss 26.9495, time 163.1 sec
+average, mae: 14.0987, rmse: 22.5147, mape: 0.1359
+epoch 41, lr 0.001000, loss 26.9143, time 162.9 sec
+average, mae: 14.2105, rmse: 22.6790, mape: 0.1421
+epoch 42, lr 0.001000, loss 26.8678, time 162.9 sec
+average, mae: 14.0547, rmse: 22.4958, mape: 0.1365
+epoch 43, lr 0.001000, loss 26.8257, time 160.9 sec
+average, mae: 14.3930, rmse: 22.9266, mape: 0.1458
+epoch 44, lr 0.001000, loss 26.7819, time 160.7 sec
+average, mae: 14.2666, rmse: 22.8661, mape: 0.1427
+epoch 45, lr 0.001000, loss 26.7147, time 160.8 sec
+average, mae: 14.2345, rmse: 22.6481, mape: 0.1380
+epoch 46, lr 0.001000, loss 26.7137, time 160.5 sec
+average, mae: 14.1140, rmse: 22.5815, mape: 0.1387
+epoch 47, lr 0.001000, loss 26.6541, time 160.1 sec
+average, mae: 14.1643, rmse: 22.6535, mape: 0.1451
+epoch 48, lr 0.001000, loss 26.6293, time 160.1 sec
+average, mae: 14.3860, rmse: 22.8382, mape: 0.1586
+epoch 49, lr 0.001000, loss 26.6355, time 159.8 sec
+average, mae: 14.0179, rmse: 22.4841, mape: 0.1315
+epoch 50, lr 0.001000, loss 26.6037, time 159.0 sec
+average, mae: 14.1004, rmse: 22.6272, mape: 0.1393
+Total training time is: 8129.153206348419 sec
+Best epoch is: 49
+======================TEST MODE======================
+average, mae: 14.8747, rmse: 26.2613, mape: 0.1500

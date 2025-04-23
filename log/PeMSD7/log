@@ -24,4 +24,17 @@ log_file: ./log/PeMSD7/log
 -------------- End ----------------
 
 ------------ Loading Data -------------
-Shape of data: (28224, 883, 1)
+Shape of original:    (28224, 883, 1)
+Shape of data:        (28224, 883, 1)
+  num steps of data:  28224
+
+Shape of TE:          (28224, 2)
+Shape of TE_tile:     (28224, 883, 2)
+
+Shape of Train Data:      (16911, 12, 883, 1)
+Shape of Validation Data: (5622, 12, 883, 1)
+Shape of Test Data:       (5622, 12, 883, 1)
+
+Mean: 309.4759457273695 & Std: 189.50826468646358
+
+temporal_graph ./data/PeMSD7/temadj.npy does not exist, constructing...
