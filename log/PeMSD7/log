@@ -1,9 +1,9 @@
 ------------ Options -------------
-config: config/PeMSD7.conf
+config: config/PeMSD7-50-epoches.conf
 cuda: 0
 seed: 1
 batch_size: 32
-max_epoch: 10
+max_epoch: 50
 learning_rate: 0.001
 input_len: 12
 output_len: 12
